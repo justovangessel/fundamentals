@@ -5,12 +5,10 @@ import "./App.css";
 function App() {
   
   const [jobs, setJobs] = useState([]);
-  // Assignment call the getByCategory from services/jobService
-  // And show the results on the screen.
   
   useEffect(() => {
     async function getJobs() {
-      var result = await getById(11);
+      var result = await getById(112);
       setJobs(result);
     }
     getJobs();

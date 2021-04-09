@@ -1,24 +1,27 @@
 const fetch = require("node-fetch");
 const baseUrl = "http://localhost:3001";
+const jobsUrl = `${baseUrl}/jobs`;
 
-async function getByCategory(category) {
-  const url = `${baseUrl}/jobs?category=${category}`;
-  console.log(url);
+async function fetchResults(url, message = "") {
   const result = await fetch(url).then((response) => {
     if (response.ok) {
       return response.json();
     }
+  }).then((response) => {
+    if(!response) {
+      return message;
+    }
+    return response
   });
   return result;
 }
 
-async function getById(id) {
-  const response = await fetch(`${baseUrl}/jobs/${id}`)
-  if (response.ok) return response.json();
-  throw response;
-}
+const getAll = async () => await fetchResults(jobsUrl, `Oops... no results found.`);
+const getById = async (id) => await fetchResults(`${jobsUrl}/${id}`, `Oops... result with id: ${id} is not found`);
+const getByCategory = async (category) => await fetchResults(`${jobsUrl}?category=${category}`, `Oops... no results found with category id: ${id}`);
 
 module.exports = {
-  getByCategory: getByCategory,
+  getAll: getAll,
   getById: getById,
+  getByCategory: getByCategory,
 }

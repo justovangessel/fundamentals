@@ -13,6 +13,7 @@ export async function getByCategory(category) {
 
 export async function getById(id) {
   const response = await fetch(`${baseUrl}/jobs/${id}`);
-  if (response.ok) return response.json();
-  throw response;
+  if (response.ok) {
+    return response.json();
+  }
 }
