@@ -1,7 +1,7 @@
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-export async function getJobsByCategory(category) {
-  const result = await fetch("http://localhost:4000/category/shoes").then((response) => {
+export async function getByCategory(category) {
+  const result = await fetch(`${baseUrl}/jobs/${category}`).then((response) => {
     console.log(response);
     if (response.ok) {
       return response.json(); //then consume it again, the error happens
@@ -11,8 +11,8 @@ export async function getJobsByCategory(category) {
   return result;
 }
 
-export async function getJobById(id) {
-  const response = await fetch(baseUrl + "products/" + id);
+export async function getById(id) {
+  const response = await fetch(`${baseUrl}/jobs/${id}`);
   if (response.ok) return response.json();
   throw response;
 }

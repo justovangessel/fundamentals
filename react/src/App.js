@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import { getJobsByCategory } from "./services/jobService";
+import { getById } from "./services/getService";
 import "./App.css";
 
 function App() {
   
   const [jobs, setJobs] = useState([]);
-  // Assignment call the getJobsByCategory from services/jobService
+  // Assignment call the getByCategory from services/jobService
   // And show the results on the screen.
   
   useEffect(() => {
     async function getJobs() {
-      var result = await getJobsByCategory("shoes");
+      var result = await getById(11);
       setJobs(result);
     }
     getJobs();
@@ -19,10 +19,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <strong>Jobify Jobboard.</strong>
+        <strong>Jobify</strong>
+        <pre>Find your dream job.</pre>
       </header>
       <div>
-        {/* Assignment: Loop through the jobs and show them here */}
         {JSON.stringify(jobs)}
       </div>
     </div>

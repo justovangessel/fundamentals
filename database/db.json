@@ -1,79 +1,133 @@
 {
-    "products": [
+    "jobs": [
       {
-        "id": 1,
-        "category": "shoes",
-        "image": "shoe1.jpg",
-        "name": "Hiker",
-        "price": 94.95,
-        "skus": [
+        "id": 11,
+        "category": 1,
+        "name": "Frontend Developer",
+        "company": "Microsoft",
+        "level": "Junior",
+        "requirements": [
           {
-            "sku": "17",
-            "size": 7
+            "title": "Experience in Javascript and React"
           },
           {
-            "sku": "18",
-            "size": 8
+            "title": "Knowledge of CSS"
           }
         ],
-        "description": "This rugged boot will get you up the mountain safely."
+        "benefits": [
+  
+          {
+            "title": "Great work environment"
+          },
+          {
+            "title": "Free lunch every day!"
+          },
+          {
+            "title": "Money!"
+          }
+        ],
+        "description": "We are looking for a Frontend Developer!"
+      },
+      {
+        "id": 21,
+        "category": 2,
+        "name": "Sales Manager",
+        "company": "Amazon",
+        "level": "Senior",
+        "requirements": [
+          {
+            "title": "Leadership"
+          },
+          {
+            "title": "Excellent communation skills."
+          }
+        ],
+        "benefits": [
+  
+          {
+            "title": "30 days off."
+          },
+          {
+            "title": "Office near the station."
+          },
+          {
+            "title": "Development budget available."
+          },
+          {
+            "title": "Free laptop of your choice."
+          }
+        ],
+        "description": "Are you the retail manager we are looking for?"
+      },
+      {
+        "id": 22,
+        "category": 2,
+        "name": "Accountmanager",
+        "company": "Nike",
+        "level": "Junior",
+        "requirements": [
+          {
+            "title": "Flexible"
+          },
+          {
+            "title": "Ambitious and eager"
+          },
+          {
+            "title": "Willing to learn sales"
+          }
+        ],
+        "benefits": [
+  
+          {
+            "title": "Bonus if you reach the targets"
+          },
+          {
+            "title": "Company car."
+          },
+          {
+            "title": "Great friday after work dinner"
+          }
+        ],
+        "description": "We are looking for ambitous sales professionals!"
+      },
+      {
+        "id": 31,
+        "category": 3,
+        "name": "Pilot",
+        "company": "RyanAir",
+        "level": "medior",
+        "requirements": [
+          {
+            "title": "Good sight"
+          },
+          {
+            "title": "Experience with Airbus planes."
+          }
+        ],
+        "benefits": [
+  
+          {
+            "title": "Flying the world."
+          },
+          {
+            "title": "Great salary"
+          }
+        ],
+        "description": "Experience pilot? Apply now!"
+      }
+    ],
+    "categories": [
+      {
+        "id": 1,
+        "name": "tech"
       },
       {
         "id": 2,
-        "category": "shoes",
-        "image": "shoe2.jpg",
-        "name": "Climber",
-        "price": 78.99,
-        "skus": [
-          {
-            "sku": "28",
-            "size": 8
-          },
-          {
-            "sku": "29",
-            "size": 9
-          }
-        ],
-        "description": "Sure-footed traction in slippery conditions."
+        "name": "retail"
       },
       {
         "id": 3,
-        "category": "shoes",
-        "image": "shoe3.jpg",
-        "name": "Explorer",
-        "price": 145.95,
-        "skus": [
-          {
-            "sku": "37",
-            "size": 7
-          },
-          {
-            "sku": "38",
-            "size": 8
-          },
-          {
-            "sku": "39",
-            "size": 9
-          }
-        ],
-        "description": "Look stylish while stomping in the mud."
-      }
-    ],
-    "shippingAddress": [
-      {
-        "id": 1,
-        "city": "",
-        "country": ""
-      },
-      {
-        "city": "a",
-        "country": "China",
-        "id": 2
-      },
-      {
-        "city": "a",
-        "country": "China",
-        "id": 3
+        "name": "travel"
       }
     ]
   }
