@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const baseUrl = "http://localhost:3001";
+const baseUrl = process.env.DATABASE_URL;
 const jobsUrl = `${baseUrl}/jobs`;
 
 async function fetchResults(url, message = "") {

@@ -1,10 +1,8 @@
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
-
-export async function getByCategory(category) {
-  const result = await fetch(`${baseUrl}/jobs/${category}`).then((response) => {
-    console.log(response);
+const url = `${process.env.REACT_APP_API_BASE_URL}/jobs`
+export async function getAll() {
+  const result = await fetch(url).then((response) => {
     if (response.ok) {
-      return response.json(); //then consume it again, the error happens
+      return response.json();
     }
   });
 
@@ -12,8 +10,21 @@ export async function getByCategory(category) {
 }
 
 export async function getById(id) {
-  const response = await fetch(`${baseUrl}/jobs/${id}`);
-  if (response.ok) {
-    return response.json();
-  }
+  const result = await fetch(`${url}/${id}`).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+
+  return result;
+}
+
+export async function getByCategory(category) {
+  const result = await fetch(`${url}/${category}`).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+
+  return result;
 }

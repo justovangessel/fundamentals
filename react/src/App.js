@@ -1,27 +1,29 @@
 import { useState, useEffect } from "react";
-import { getById } from "./services/getService";
+import { getAll } from "./services/getService";
 import "./App.css";
 
 function App() {
   
-  const [jobs, setJobs] = useState([]);
+  const [data, setData] = useState([]);
   
   useEffect(() => {
-    async function getJobs() {
-      var result = await getById(112);
-      setJobs(result);
+    async function getData() {
+      var result = await getAll();
+      setData(result);
     }
-    getJobs();
+    getData();
   }, []);
 
   return (
     <div className="App">
       <header>
-        <strong>Jobify</strong>
+        <h1>Jobify</h1>
         <pre>Find your dream job.</pre>
       </header>
-      <div>
-        {JSON.stringify(jobs)}
+      <div style={{ margin: "0 auto", width: "50%", backgroundColor: "lightblue" }}>
+        <pre style={{ textAlign: "initial" }}>
+          {JSON.stringify(data, null, "\t")}
+        </pre>
       </div>
     </div>
   );
