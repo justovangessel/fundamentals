@@ -14,12 +14,12 @@
   },
   "scripts": {
     "postinstall": "run-p install:*",
-    "install:api": "cd ../../api && npm install",
-    "install:database": "cd ../../database && npm install",
+    "install:api": "cd ../api && npm install",
+    "install:database": "cd ../database && npm install",
     "start": "run-p start:*",
     "start:app": "cross-env REACT_APP_API_BASE_URL=http://localhost:4000/ react-scripts start ",
-    "start:api": "cd ../../api && npm run start",
-    "start:database": "cd ../../database && npm run start",
+    "start:api": "cd ../api && npm start",
+    "start:database": "cd ../database && npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,2 +1,0 @@
-# frontendfundamentals
-Created with CodeSandbox

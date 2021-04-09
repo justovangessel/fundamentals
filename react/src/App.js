@@ -3,9 +3,11 @@ import { getJobsByCategory } from "./services/jobService";
 import "./App.css";
 
 function App() {
+  
   const [jobs, setJobs] = useState([]);
-
-  // Assignment create a custom hook.
+  // Assignment call the getJobsByCategory from services/jobService
+  // And show the results on the screen.
+  
   useEffect(() => {
     async function getJobs() {
       var result = await getJobsByCategory("shoes");
