@@ -1,4 +1,5 @@
-const url = `${process.env.REACT_APP_API_BASE_URL}/jobs`
+const url = `${process.env.REACT_APP_API_BASE_URL}/holidays`
+
 export async function getAll() {
   const result = await fetch(url).then((response) => {
     if (response.ok) {
@@ -11,7 +12,7 @@ export async function getAll() {
 
 export async function getById(id) {
   const result = await fetch(`${url}/${id}`).then((response) => {
-    if (response.ok) {
+    if (response.ok) {      
       return response.json();
     }
   });

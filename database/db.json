@@ -1,133 +1,52 @@
 {
-    "jobs": [
-      {
-        "id": 11,
-        "category": 1,
-        "name": "Frontend Developer",
-        "company": "Microsoft",
-        "level": "Junior",
-        "requirements": [
-          {
-            "title": "Experience in Javascript and React"
-          },
-          {
-            "title": "Knowledge of CSS"
-          }
-        ],
-        "benefits": [
-  
-          {
-            "title": "Great work environment"
-          },
-          {
-            "title": "Free lunch every day!"
-          },
-          {
-            "title": "Money!"
-          }
-        ],
-        "description": "We are looking for a Frontend Developer!"
-      },
-      {
-        "id": 21,
-        "category": 2,
-        "name": "Sales Manager",
-        "company": "Amazon",
-        "level": "Senior",
-        "requirements": [
-          {
-            "title": "Leadership"
-          },
-          {
-            "title": "Excellent communation skills."
-          }
-        ],
-        "benefits": [
-  
-          {
-            "title": "30 days off."
-          },
-          {
-            "title": "Office near the station."
-          },
-          {
-            "title": "Development budget available."
-          },
-          {
-            "title": "Free laptop of your choice."
-          }
-        ],
-        "description": "Are you the retail manager we are looking for?"
-      },
-      {
-        "id": 22,
-        "category": 2,
-        "name": "Accountmanager",
-        "company": "Nike",
-        "level": "Junior",
-        "requirements": [
-          {
-            "title": "Flexible"
-          },
-          {
-            "title": "Ambitious and eager"
-          },
-          {
-            "title": "Willing to learn sales"
-          }
-        ],
-        "benefits": [
-  
-          {
-            "title": "Bonus if you reach the targets"
-          },
-          {
-            "title": "Company car."
-          },
-          {
-            "title": "Great friday after work dinner"
-          }
-        ],
-        "description": "We are looking for ambitous sales professionals!"
-      },
-      {
-        "id": 31,
-        "category": 3,
-        "name": "Pilot",
-        "company": "RyanAir",
-        "level": "medior",
-        "requirements": [
-          {
-            "title": "Good sight"
-          },
-          {
-            "title": "Experience with Airbus planes."
-          }
-        ],
-        "benefits": [
-  
-          {
-            "title": "Flying the world."
-          },
-          {
-            "title": "Great salary"
-          }
-        ],
-        "description": "Experience pilot? Apply now!"
-      }
-    ],
-    "categories": [
-      {
-        "id": 1,
-        "name": "tech"
-      },
-      {
-        "id": 2,
-        "name": "retail"
-      },
-      {
-        "id": 3,
-        "name": "travel"
-      }
-    ]
-  }
+  "holidays": [
+    {
+      "id": 1,
+      "naam": "Andalusia",
+      "land": "Spain",
+      "vertrekdatum": "20-07-2021",
+      "terugkomstdatum": "20-07-2021",
+      "omschrijving": "Even een weekje weg",
+      "hotels": [
+        {
+          "naam": "La Cala Golf Hotel",
+          "incheckdatum": "20-07-2021",
+          "uitcheckdatum": "20-07-2021",
+          "prijs": 700
+        }
+      ],
+      "vluchten": [
+        {
+          "maatschappij": "La Cala Golf Hotel",
+          "datum": "20-07-2021",
+          "tijd": "07:25",
+          "prijs": 300
+        }
+      ],
+      "autoverhuur": [
+        {
+          "maatschappij": "La Cala Golf Hotel",
+          "datum": "20-07-2021",
+          "tijd": "07:25",
+          "prijs": 300
+        }
+      ]
+    },
+    {
+      "naam": "Zeeland",
+      "omschrijving": "Lang weekend",
+      "land": "Netherlands",
+      "vertrekdatum": "",
+      "terugkomstdatum": "",
+      "id": 2
+    },
+    {
+      "naam": "Oslo",
+      "omschrijving": "Skivakantie",
+      "land": "Norway",
+      "vertrekdatum": "2021-06-12",
+      "terugkomstdatum": "2021-06-19",
+      "id": 3
+    }
+  ]
+}

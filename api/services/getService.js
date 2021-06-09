@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const baseUrl = process.env.DATABASE_URL;
-const jobsUrl = `${baseUrl}/jobs`;
+const holidaysUrl = `${baseUrl}/holidays`;
 
 async function fetchResults(url, message = "") {
   const result = await fetch(url).then((response) => {
@@ -16,9 +16,9 @@ async function fetchResults(url, message = "") {
   return result;
 }
 
-const getAll = async () => await fetchResults(jobsUrl, `Oops... no results found.`);
-const getById = async (id) => await fetchResults(`${jobsUrl}/${id}`, `Oops... result with id: ${id} is not found`);
-const getByCategory = async (category) => await fetchResults(`${jobsUrl}?category=${category}`, `Oops... no results found with category id: ${id}`);
+const getAll = async () => await fetchResults(holidaysUrl, `Oops... no results found.`);
+const getById = async (id) => await fetchResults(`${holidaysUrl}/${id}`, `Oops... result with id: ${id} is not found`);
+const getByCategory = async (category) => await fetchResults(`${holidaysUrl}?category=${category}`, `Oops... no results found with category id: ${id}`);
 
 module.exports = {
   getAll: getAll,
