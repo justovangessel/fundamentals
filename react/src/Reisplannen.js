@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { getReisplannen, getCategories, getLanden } from "./services/getService";
 // Material-UI
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -10,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import CreateReisplan from "./CreateReisplan";
 import UpdateReisplan from "./UpdateReisplan";
 
 function Reisplannen(props) {
@@ -40,10 +40,45 @@ function Reisplannen(props) {
         },
     }));
     const classes = useStyles();
-    
-    useEffect(() => {
-        props.getReisplannen();
-    }, []);
+
+const [allReisplannen, setAllReisplannen] = useState([]);
+const [dateUpdate, setDateUpdate] = useState(new Date());
+
+const updateDate = () => {
+    setDateUpdate(new Date());
+}
+
+const getAllReisplannen = useMemo(() => {
+    async function getData() {
+        var result = await getReisplannen();
+        setAllReisplannen(result);
+    }
+    getData();
+    console.log("getAllReisplannen : " + dateUpdate);
+}, [dateUpdate])
+
+useEffect(() => {
+    console.log("useEffect getAllReisplannen");
+}, [getAllReisplannen]);
+
+const [categories, setCategories] = useState([]);
+const [landen, setLanden] = useState([]);
+useEffect(() => {
+    async function getDataCategories() {
+        var result = await getCategories();
+        setCategories(result);
+    }
+    getDataCategories();
+
+    async function getDataCountries() {
+        var result = await getLanden();
+        setLanden(result);
+    }
+    getDataCountries();
+
+    console.log("useEffect getCategories/getLanden");
+}, [])
+
 
     return (
         <>
@@ -58,10 +93,12 @@ function Reisplannen(props) {
             <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
                 <Grid item>
-                    <CreateReisplan
-                        singleReisplan={props.singleReisplan}
-                        createReisplan={props.createReisplan}
-                        handleChange={props.handleChange}
+                    <UpdateReisplan
+                        buttonText="Plan een reis!"
+                        reisplanId={0}
+                        updateDate={updateDate}
+                        landen={landen}
+                        categories={categories}
                     />
                 </Grid>
             </Grid>
@@ -74,9 +111,12 @@ function Reisplannen(props) {
         <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
             Mijn reisplannen
         </Typography>
+        <center><small>Laatste update: { dateUpdate.toLocaleDateString('nl-NL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }) }</small></center>
 
         <Grid container spacing={4}>
-            {props.alldata.map((holiday) => (
+
+
+            {allReisplannen.map((holiday) => (
             <Grid item key={holiday.id} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                 <CardMedia
@@ -97,12 +137,12 @@ function Reisplannen(props) {
                     Bekijk
                     </Button>
                     <UpdateReisplan
+                        buttonText="Bewerk"
                         reisplanId={holiday.id}
-                        singleReisplan={props.singleReisplan}
-                        getReisplan={props.getReisplan}
-                        updateReisplan={props.updateReisplan}
-                        deleteReisplan={props.deleteReisplan}
-                        handleChange={props.handleChange}>
+                        updateDate={updateDate}
+                        landen={landen}
+                        categories={categories}
+                        >
                     </UpdateReisplan>
                 </CardActions>
                 </Card>

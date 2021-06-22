@@ -1,52 +1,362 @@
 {
   "holidays": [
     {
-      "id": 1,
       "naam": "Andalusia",
-      "land": "Spain",
-      "vertrekdatum": "20-07-2021",
-      "terugkomstdatum": "20-07-2021",
       "omschrijving": "Even een weekje weg",
-      "hotels": [
-        {
-          "naam": "La Cala Golf Hotel",
-          "incheckdatum": "20-07-2021",
-          "uitcheckdatum": "20-07-2021",
-          "prijs": 700
-        }
-      ],
-      "vluchten": [
-        {
-          "maatschappij": "La Cala Golf Hotel",
-          "datum": "20-07-2021",
-          "tijd": "07:25",
-          "prijs": 300
-        }
-      ],
-      "autoverhuur": [
-        {
-          "maatschappij": "La Cala Golf Hotel",
-          "datum": "20-07-2021",
-          "tijd": "07:25",
-          "prijs": 300
-        }
-      ]
-    },
-    {
-      "naam": "Zeeland",
-      "omschrijving": "Lang weekend",
-      "land": "Netherlands",
-      "vertrekdatum": "",
-      "terugkomstdatum": "",
-      "id": 2
+      "land": "Spain",
+      "vertrekdatum": "2021-06-12",
+      "terugkomstdatum": "2021-07-02",
+      "id": 1,
+      "categorie": "2"
     },
     {
       "naam": "Oslo",
-      "omschrijving": "Skivakantie",
+      "omschrijving": "Skivakantieaaaaa",
       "land": "Norway",
-      "vertrekdatum": "2021-06-12",
-      "terugkomstdatum": "2021-06-19",
-      "id": 3
+      "vertrekdatum": "2021-06-16",
+      "terugkomstdatum": "2021-06-20",
+      "id": 3,
+      "categorie": "1"
+    },
+    {
+      "naam": "Zeeland",
+      "omschrijving": "Even een weekje weg",
+      "land": "Netherlands",
+      "vertrekdatum": "2021-06-26",
+      "hotels": {
+        "naam": "",
+        "prijs": ""
+      },
+      "terugkomstdatum": "2021-06-27",
+      "id": 4,
+      "categorie": "5"
+    },
+    {
+      "naam": "Rome",
+      "omschrijving": "Muntjes in de fontein gooien",
+      "land": "Italy",
+      "vertrekdatum": "2021-06-20",
+      "hotels": {
+        "naam": "",
+        "prijs": ""
+      },
+      "terugkomstdatum": "2021-06-27",
+      "id": 5,
+      "categorie": "2"
+    },
+    {
+      "naam": "Rondreis door Egypte",
+      "omschrijving": "Pyramides zien",
+      "categorie": "3",
+      "land": "Egypt",
+      "vertrekdatum": "2021-06-27",
+      "hotels": {
+        "naam": "",
+        "prijs": ""
+      },
+      "terugkomstdatum": "2021-06-30",
+      "id": 6
+    },
+    {
+      "naam": "De hooglanden",
+      "omschrijving": "Weekje in een jeep rondreiden",
+      "categorie": "5",
+      "land": "United Kingdom",
+      "vertrekdatum": "2021-08-14",
+      "hotels": {
+        "naam": "",
+        "prijs": ""
+      },
+      "terugkomstdatum": "2021-06-20",
+      "id": 7
+    }
+  ],
+  "countries": [
+    {
+      "id": 10,
+      "name": "Antarctica",
+      "naam": "Antarctica",
+      "category": 1
+    },
+    {
+      "id": 32,
+      "name": "Argentina",
+      "naam": "Argentinië",
+      "category": 3
+    },
+    {
+      "id": 533,
+      "name": "Aruba",
+      "naam": "Aruba",
+      "category": 2
+    },
+    {
+      "id": 36,
+      "name": "Australia",
+      "naam": "Australië",
+      "category": 3
+    },
+    {
+      "id": 40,
+      "name": "Austria",
+      "naam": "Oostenrijk",
+      "category": 1
+    },
+    {
+      "id": 56,
+      "name": "Belgium",
+      "naam": "België",
+      "category": 5
+    },
+    {
+      "id": 535,
+      "name": "Bonaire",
+      "naam": "Bonaire",
+      "category": 2
+    },
+    {
+      "id": 72,
+      "name": "Botswana",
+      "naam": "Botswana",
+      "category": 4
+    },
+    {
+      "id": 76,
+      "name": "Brazil",
+      "naam": "Brazilië",
+      "category": 3
+    },
+    {
+      "id": 124,
+      "name": "Canada",
+      "naam": "Canada",
+      "category": 1
+    },
+    {
+      "id": 156,
+      "name": "China",
+      "naam": "China",
+      "category": 3
+    },
+    {
+      "id": 188,
+      "name": "Costa Rica",
+      "naam": "Costa Rica",
+      "category": 4
+    },
+    {
+      "id": 191,
+      "name": "Croatia",
+      "naam": "Kroatië",
+      "category": 3
+    },
+    {
+      "id": 192,
+      "name": "Cuba",
+      "naam": "Cuba",
+      "category": 2
+    },
+    {
+      "id": 531,
+      "name": "Curaçao",
+      "naam": "Curaçao",
+      "category": 2
+    },
+    {
+      "id": 218,
+      "name": "Ecuador",
+      "naam": "Ecuador",
+      "category": 3
+    },
+    {
+      "id": 818,
+      "name": "Egypt",
+      "naam": "Egypte",
+      "category": 3
+    },
+    {
+      "id": 250,
+      "name": "France",
+      "naam": "Frankrijk",
+      "category": 5
+    },
+    {
+      "id": 300,
+      "name": "Greece",
+      "naam": "Griekenland",
+      "category": 2
+    },
+    {
+      "id": 356,
+      "name": "India",
+      "naam": "India",
+      "category": 3
+    },
+    {
+      "id": 360,
+      "name": "Indonesia",
+      "naam": "Indonesië",
+      "category": 3
+    },
+    {
+      "id": 376,
+      "name": "Israel",
+      "naam": "Israël",
+      "category": 3
+    },
+    {
+      "id": 380,
+      "name": "Italy",
+      "naam": "Italië",
+      "category": 2
+    },
+    {
+      "id": 392,
+      "name": "Japan",
+      "naam": "Japan",
+      "category": 3
+    },
+    {
+      "id": 404,
+      "name": "Kenya",
+      "naam": "Kenia",
+      "category": 4
+    },
+    {
+      "id": 462,
+      "name": "Maldives",
+      "naam": "Malediven",
+      "category": 2
+    },
+    {
+      "id": 484,
+      "name": "Mexico",
+      "naam": "Mexico",
+      "category": 3
+    },
+    {
+      "id": 504,
+      "name": "Morocco",
+      "naam": "Marokko",
+      "category": 3
+    },
+    {
+      "id": 516,
+      "name": "Namibia",
+      "naam": "Namibië",
+      "category": 4
+    },
+    {
+      "id": 528,
+      "name": "Netherlands",
+      "naam": "Nederland",
+      "category": 5
+    },
+    {
+      "id": 554,
+      "name": "New Zealand",
+      "naam": "Nieuw Zeeland",
+      "category": 1
+    },
+    {
+      "id": 578,
+      "name": "Norway",
+      "naam": "Noorwegen",
+      "category": 1
+    },
+    {
+      "id": 604,
+      "name": "Peru",
+      "naam": "Peru",
+      "category": 3
+    },
+    {
+      "id": 620,
+      "name": "Portugal",
+      "naam": "Portugal",
+      "category": 2
+    },
+    {
+      "id": 690,
+      "name": "Seychelles",
+      "naam": "Seychellen",
+      "category": 2
+    },
+    {
+      "id": 710,
+      "name": "South Africa",
+      "naam": "Zuid Afrika",
+      "category": 4
+    },
+    {
+      "id": 724,
+      "name": "Spain",
+      "naam": "Spanje",
+      "category": 2
+    },
+    {
+      "id": 752,
+      "name": "Sweden",
+      "naam": "Zweden",
+      "category": 4
+    },
+    {
+      "id": 756,
+      "name": "Switzerland",
+      "naam": "Zwitserland",
+      "category": 1
+    },
+    {
+      "id": 834,
+      "name": "Tanzania",
+      "naam": "Tanzania",
+      "category": 4
+    },
+    {
+      "id": 764,
+      "name": "Thailand",
+      "naam": "Thailand",
+      "category": 3
+    },
+    {
+      "id": 792,
+      "name": "Turkey",
+      "naam": "Turkije",
+      "category": 2
+    },
+    {
+      "id": 826,
+      "name": "United Kingdom",
+      "naam": "Groot Britannië",
+      "category": 5
+    },
+    {
+      "id": 840,
+      "name": "United States of America",
+      "naam": "Verenigde Staten",
+      "category": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Sportief"
+    },
+    {
+      "id": 2,
+      "name": "Zon, zee en strand"
+    },
+    {
+      "id": 3,
+      "name": "Cultuur"
+    },
+    {
+      "id": 4,
+      "name": "Natuur"
+    },
+    {
+      "id": 5,
+      "name": "Dichtbij"
     }
   ]
 }

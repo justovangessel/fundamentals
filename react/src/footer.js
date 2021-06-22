@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Header() {
+function Footer() {
 
 const classes = useStyles();
 
@@ -37,4 +37,4 @@ return (
     )
 }
 
-export default Header;
+export default Footer;

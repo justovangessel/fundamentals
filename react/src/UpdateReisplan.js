@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 // Material-UI
 import Button from '@material-ui/core/Button';
@@ -10,6 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+// Service
+import { createReisplan, readReisplan, updateReisplan, deleteReisplan } from "./services/getService";
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -50,31 +56,116 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UpdateReisplan(props) {
-    const modalIdentifier = 'update' + props.reisplanId
-    const dataTarget = '#' + modalIdentifier
+    const reisplanEmpty = { 
+        naam: "",
+        omschrijving: "",
+        categorie: "0",
+        land: "",
+        vertrekdatum: "",
+        hotels: {
+            naam: "",
+            prijs: "",
+        }
+    }
+    const [melding, setMelding] = useState();
+    const [reisplanID, setReisplanID] = useState(0);
+    const [reisplan, setReisplan] = useState(reisplanEmpty);
+    const [filterLanden, setFilterLanden] = useState([]);
+
+    const handleChange = e => {
+        if (e.target.name === "naam") setReisplan( { ...reisplan, naam: e.target.value } );
+        if (e.target.name === "omschrijving") setReisplan( { ...reisplan, omschrijving: e.target.value } );
+        if (e.target.name === "vertrekdatum") setReisplan( { ...reisplan, vertrekdatum: e.target.value } );
+        if (e.target.name === "terugkomstdatum") setReisplan( { ...reisplan, terugkomstdatum: e.target.value } );
+        if (e.target.name === "categorie") {
+            setReisplan( { ...reisplan, categorie: e.target.value } );
+            getfilterLanden(e.target.value)
+        }
+        if (e.target.name === "land") setReisplan( { ...reisplan, land: e.target.value } );
+    };
 
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
+
     const handleModalOpen = (e) => {
-        props.getReisplan(e, props.reisplanId);
-        setOpen(true);
+        
+        getfilterLanden("0");
+        setMelding("");
+
+        if (props.reisplanId === 0) {
+            setReisplanID(0);
+            setReisplan(reisplanEmpty);
+        } else {
+            // Reisplan ophalen
+            setReisplanID(props.reisplanId);
+            async function getData() {
+                var result = await readReisplan(props.reisplanId);
+                setReisplan(result);
+            }
+            getData();
+        }
+
+        // Datumvelden vullen kost tijd
+        setTimeout(() => {
+            setOpen(true);
+        }, 500)
     };
     const handleModalClose = () => {
         setOpen(false);
     };
 
-    const deleteReisplan = (e) => {
-        props.deleteReisplan(e, props.reisplanId);
+    const verwijderReisplan = () => {
+
+        async function deleteData() {
+            var result = await deleteReisplan(reisplanID);
+            if (result) {
+                props.updateDate();
+                setMelding("Het reisplan is verwijderd.");
+            } else {
+                setMelding("Verwijder is mislukt.");
+            }
+        }
+        deleteData();
         handleModalClose();
     }
 
+    const opslaanReisplan = () => {
+        async function updateData() {
+            var result;
+            if (reisplanID === 0) {
+                result = await createReisplan(reisplan);
+            } else {
+                result = await updateReisplan(reisplanID, reisplan);
+            }
+
+            if (result) {
+                setReisplanID(result.id);
+                props.updateDate();
+                setMelding("Het reisplan is opgeslagen.");
+            } else {
+                setMelding("Opslaan is mislukt.");
+            }
+        }
+        updateData();
+    }
+
+    const getfilterLanden = useCallback((categorie) => {
+        if (categorie === '0') {
+            setFilterLanden(props.landen);
+        } else {
+            setFilterLanden(props.landen.filter(land => land.category === Number(categorie)));
+        }
+        console.log("getfilterLanden ", categorie);
+        return filterLanden;
+
+    }, [filterLanden, props.landen])
 
 return (
     <>
-        <Button size="small" color="primary" data-toggle="modal" data-target={dataTarget}
+        <Button size="small" color="primary" data-toggle="modal"
     onClick={handleModalOpen}>
-            Bewerk
+            { props.buttonText }
         </Button>
 
         <Modal
@@ -86,7 +177,7 @@ return (
             <div style={modalStyle} className={classes.paper}>
 
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                    Nieuw reisplan
+                    { props.buttonText }
                 </Typography>
 
                 <div class="row">
@@ -102,9 +193,9 @@ return (
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        value={ props.singleReisplan.naam }
+                        value={ reisplan.naam }
+                        onChange={handleChange}
                         variant="outlined"
-                        onChange={props.handleChange}
                         />
                     </div>
                 </div>
@@ -121,9 +212,9 @@ return (
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        value={ props.singleReisplan.omschrijving }
+                        value={ reisplan.omschrijving }
+                        onChange={handleChange}
                         variant="outlined"
-                        onChange={props.handleChange}
                         />
                     </div>
                 </div>
@@ -134,9 +225,9 @@ return (
                             name="vertrekdatum"
                             label="Vertrekdatum"
                             type="date"
-                            defaultValue={props.singleReisplan.vertrekdatum}
+                            defaultValue={reisplan.vertrekdatum}
                             className={classes.textField}
-                            onChange={props.handleChange}
+                            onChange={handleChange}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -145,9 +236,9 @@ return (
                             name="terugkomstdatum"
                             label="Terugkomstdatum"
                             type="date"
-                            defaultValue={props.singleReisplan.terugkomstdatum}
+                            defaultValue={reisplan.terugkomstdatum}
                             className={classes.textField}
-                            onChange={props.handleChange}
+                            onChange={handleChange}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -157,26 +248,38 @@ return (
 
                 <div class="row">
                     <div class="col">
+                    <FormControl component="fieldset">
+                        <RadioGroup aria-label="categorie" name="categorie" row value={reisplan.categorie} onChange={handleChange}>
+                            <FormControlLabel value={ '0' } control={<Radio />} label="Alles" />
+                            {props.categories.map((categorie) => (
+                                <FormControlLabel value={ '' + categorie.id } control={<Radio />} label={ categorie.name } />
+                            ))}
+                        </RadioGroup>
+                    </FormControl>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel htmlFor="land">Land</InputLabel>
+                            <InputLabel htmlFor="land">Land ({ filterLanden.length })</InputLabel>
                             <Select
                             native
-                            value={props.singleReisplan.land}
-                            onChange={props.handleChange}
+                            value={reisplan.land}
+                            onChange={handleChange}
                             inputProps={{
                                 name: 'land',
                                 id: 'land',
                             }}
                             >
-                            <option aria-label="None" value="" />
-                            <option value={ 'Netherlands' }>Nederland</option>
-                            <option value={ 'Spain' }>Spanje</option>
-                            <option value={ 'Norway' }>Noorwegen</option>
+                            <option aria-label="None" value="" ></option>
+                            {filterLanden.map((land) => (
+                                <option value={ land.name } >{ land.naam }</option>
+                            ))}
                             </Select>
                         </FormControl>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col__buttons">
@@ -191,17 +294,25 @@ return (
                             onClick={handleModalClose}>
                             Annuleren
                         </Button>
-                        <Button 
-                            variant="contained" className={ classes.button } color="secondary"
-                            onClick={deleteReisplan}>
-                            Verwijderen
-                        </Button>
+                        { reisplanID !== 0 &&
+                            <Button 
+                                variant="contained" className={ classes.button } color="secondary"
+                                onClick={verwijderReisplan}>
+                                Verwijderen
+                            </Button>
+                        }
                         <Button 
                             variant="contained" className={ classes.button } color="primary"
-                            onClick={(event)=>props.updateReisplan(event,props.reisplanId)}>
+                            onClick={opslaanReisplan}>
                             Opslaan
                         </Button>
                     </Grid>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        { melding }
                     </div>
                 </div>
 
